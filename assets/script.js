@@ -180,87 +180,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ====================================================
-    // 6. CLIENTS SLIDER
+    // 6. CLIENTS SLIDER (CHẠY LIÊN TỤC - FIX)
     // ====================================================
-    const customerContainer = document.querySelector('.customer-slider');
     const customerTrack = document.querySelector('.owl-carousel-clients-carousel');
 
-    if (customerContainer && customerTrack) {
-        const customerSlides = customerTrack.querySelectorAll('.customer-slide');
-        const customerLeft = document.querySelector('.customer-arrow.left');
-        const customerRight = document.querySelector('.customer-arrow.right');
-
-        if (customerSlides.length > 0 && customerLeft && customerRight) {
-            let customerIdx = 0;
-            const originalSlidesCount = customerSlides.length;
-            const transitionTime = 600;
-            let visibleSlides = 4;
-            let slideWidth = 0;
-
-            function calculateMetrics() {
-                if (!customerSlides[0]) return;
-                slideWidth = customerSlides[0].offsetWidth + 32; 
-                if (slideWidth <= 32) return;
-
-                const containerWidth = customerContainer.offsetWidth;
-                visibleSlides = Math.max(1, Math.floor(containerWidth / slideWidth));
-
-                customerTrack.querySelectorAll('.clone').forEach(clone => clone.remove());
-                for (let i = 0; i < visibleSlides; i++) {
-                    if (customerSlides[i]) {
-                        const clone = customerSlides[i].cloneNode(true);
-                        clone.classList.add('clone');
-                        customerTrack.appendChild(clone);
-                    }
-                }
-            }
-
-            function updateCustomerSlider(isTeleport = false) {
-                if (slideWidth <= 32) {
-                    calculateMetrics();
-                    if (slideWidth <= 32) return;
-                }
-                if (isTeleport) {
-                    customerTrack.style.transition = 'none';
-                } else {
-                    customerTrack.style.transition = `transform ${transitionTime}ms cubic-bezier(0.4,0,0.2,1)`;
-                }
-                customerTrack.style.transform = `translateX(-${customerIdx * slideWidth}px)`;
-            }
-
-            customerRight.addEventListener('click', () => {
-                if (customerIdx < originalSlidesCount - visibleSlides) {
-                    customerIdx++;
-                } else {
-                    customerIdx = 0;
-                }
-                updateCustomerSlider();
-            });
-
-            customerLeft.addEventListener('click', () => {
-                if (customerIdx > 0) {
-                    customerIdx--;
-                } else {
-                    customerIdx = originalSlidesCount - visibleSlides;
-                }
-                updateCustomerSlider();
-            });
-
-            // Auto Run
-            setInterval(() => {
-                customerIdx++;
-                updateCustomerSlider(false);
-                if (customerIdx === originalSlidesCount) {
-                    setTimeout(() => {
-                        customerIdx = 0;
-                        updateCustomerSlider(true);
-                    }, transitionTime);
-                }
-            }, 3500);
-
-            setTimeout(calculateMetrics, 100);
-            window.addEventListener('resize', calculateMetrics);
-        }
+    if (customerTrack) {
+        // Lấy danh sách logo gốc
+        const slides = Array.from(customerTrack.children);
+        
+        // Nhân đôi danh sách logo lên
+        // Logic: CSS sẽ chạy từ 0% đến -50%.
+        // Khi chạy đến -50% (hết đám gốc), nó nhảy về 0. 
+        // Nhờ việc nhân đôi nên lúc nhảy về 0 mắt người không nhìn thấy kịp -> Thấy nó chạy liên tục.
+        slides.forEach(slide => {
+            const clone = slide.cloneNode(true);
+            clone.setAttribute('aria-hidden', true); // Tốt cho SEO
+            customerTrack.appendChild(clone);
+        });
     }
 
 

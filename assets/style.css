@@ -370,58 +370,62 @@ body {
 }
 
 /* =========================================
-   7. ĐỐI TÁC (Clients Slider)
+   7. ĐỐI TÁC (Clients Slider - Chạy liên tục)
 ========================================= */
 .clients {
-  position: relative;
-  padding: 10px 0;
-  text-align: center;
-  background: #fff;
-  font-family: 'Playfair Display', serif;
+    position: relative;
+    padding: 10px 0;
+    text-align: center;
+    background: #fff;
+    font-family: 'Playfair Display', serif;
 }
 .clients .section-header h2 {
-  font-size: 2.5rem; color: #000;
+    font-size: 2.5rem; color: #000;
 }
+
 .customer-slider {
-  width: 100%; overflow: hidden;
-  position: relative; margin: 0 auto;
-  padding: 40px 0;
+    width: 100%; 
+    overflow: hidden;
+    position: relative; 
+    margin: 0 auto;
+    padding: 40px 0;
 }
+
+/* Ẩn nút bấm vì chạy tự động */
+.customer-arrow { display: none !important; }
+
+/* Setup thanh trượt chạy animation */
 .owl-carousel-clients-carousel {
-  display: flex; gap: 32px;
-  transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
-  will-change: transform;
+    display: flex; 
+    gap: 32px;
+    width: max-content; /* Quan trọng: Để các logo xếp thành 1 hàng dài vô tận */
+    
+    /* Animation: Tên - Thời gian (20s) - Kiểu chạy (đều) - Lặp lại (vô hạn) */
+    /* Muốn chạy nhanh hơn thì giảm số 20s xuống */
+    animation: marqueeRun 20s linear infinite; 
 }
+
+/* Style từng ô logo (Giữ nguyên như cũ) */
 .customer-slide {
-  min-width: 220px; max-width: 220px; flex: 0 0 220px;
-  background: #f7f7f7; border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  transition: box-shadow 0.3s;
+    min-width: 220px; max-width: 220px; flex: 0 0 220px;
+    background: #f7f7f7; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Bóng nhẹ */
 }
 .customer-slide img {
-  width: 100%; height: 100px;
-  object-fit: contain; border-radius: 8px; background: #fff;
+    width: 100%; height: 100px;
+    object-fit: contain; border-radius: 8px; background: #fff;
 }
-.customer-slide:hover { box-shadow: 0 6px 22px rgba(0,0,0,0.12); }
-
-.customer-arrow {
-  position: absolute; top: 50%;
-  transform: translateY(-50%);
-  width: 38px; height: 38px;
-  border: none; color: #000;
-  border-radius: 50%; font-size: 1.5em;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; z-index: 2;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  transition: background 0.2s;
-}
-.customer-arrow.left { left: 12px; }
-.customer-arrow.right { right: 12px; }
-.customer-arrow:hover { background: #ffe5eb; }
 
 @media (max-width: 900px) {
-  .customer-slide { min-width: 140px; max-width: 140px; }
-  .customer-slide img { height: 60px; }
+    .customer-slide { min-width: 140px; max-width: 140px; }
+    .customer-slide img { height: 60px; }
+}
+
+/* --- ĐỊNH NGHĨA CHUYỂN ĐỘNG --- */
+@keyframes marqueeRun {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Chạy hết 1 nửa (bản gốc) rồi reset ngay lập tức */
 }
 
 /* =========================================
@@ -776,4 +780,20 @@ body {
     .contact-info .item { justify-content: center; }
     .links-col ul li a { justify-content: center; }
     .social-links { justify-content: center; }
+}
+/* ======================================================
+   FIX LỖI HÌNH NỀN BỊ BỂ TRÊN ĐIỆN THOẠI (COUNTERS & COMMUNICATE)
+====================================================== */
+@media (max-width: 1024px) {
+    .counters, 
+    .communicate {
+        /* Tắt chế độ Fixed (nguyên nhân gây bể hình trên mobile) */
+        background-attachment: scroll !important;
+        
+        /* Căn giữa hình để luôn lấy trọng tâm đẹp nhất */
+        background-position: center center !important;
+        
+        /* Đảm bảo hình luôn phủ kín khung */
+        background-size: cover !important;
+    }
 }
