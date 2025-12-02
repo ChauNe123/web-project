@@ -289,3 +289,19 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn("Chưa thấy ID trong HTML footer.");
     }
 });
+
+// ====================================================
+    // SLIDER ẢNH DỊCH VỤ (Cột phải - Fix Loop)
+    // ====================================================
+    const marqueeTrack = document.querySelector('.marquee-track');
+
+    if (marqueeTrack) {
+        // Lấy danh sách ảnh gốc
+        const images = Array.from(marqueeTrack.children);
+        
+        // Nhân đôi để tạo vòng lặp vô tận
+        images.forEach(img => {
+            const clone = img.cloneNode(true);
+            marqueeTrack.appendChild(clone);
+        });
+    }

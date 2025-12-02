@@ -758,6 +758,219 @@ body {
 @media (max-width: 480px) { .video-box { width: 100%; height: 100%; border-radius: 0; } }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
+/* =========================================
+   GIAO DIỆN DỊCH VỤ (RE-DESIGN SANG TRỌNG)
+========================================= */
+.services-preview-section {
+    padding: 100px 0;
+    background: #f9f9f9; /* Nền xám rất nhạt để tách biệt */
+}
+
+.center-header { 
+    text-align: center; margin-bottom: 60px; 
+}
+.center-header h2 {
+    color: #000; font-size: 2.8rem; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px;
+}
+.center-header .subtitle { color: #555; font-size: 18px; font-weight: 300; }
+.center-header .title-line {
+    width: 80px; height: 4px; background: #cc0000; margin: 20px auto;
+}
+
+/* --- Layout chia cột --- */
+.services-modern-layout {
+    display: flex;
+    gap: 50px; /* Tăng khoảng cách giữa 2 cột cho thoáng */
+    align-items: flex-start; /* Căn hàng trên cùng */
+}
+
+/* --- CỘT TRÁI: LIST DỊCH VỤ --- */
+.svc-list-col {
+    flex: 1.3; 
+}
+
+/* Grid 2 cột nhưng item to rõ hơn */
+.svc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Từng ô dịch vụ (Card) */
+.svc-item {
+    display: flex;
+    align-items: flex-start; /* Icon và chữ căn hàng trên */
+    gap: 20px;
+    padding: 25px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid transparent; /* Viền ẩn */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.03); /* Bóng rất nhẹ */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden; /* Để hiệu ứng không tràn ra ngoài */
+}
+
+/* Hiệu ứng Hover xịn */
+.svc-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(204, 0, 0, 0.1); /* Bóng đỏ nhạt */
+    border-color: #f0f0f0;
+}
+
+/* Icon */
+.svc-item .icon {
+    min-width: 55px; height: 55px;
+    background: #fff0f0; /* Nền đỏ nhạt */
+    color: #cc0000;
+    border-radius: 12px; /* Bo góc vuông mềm */
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    transition: 0.3s;
+}
+
+/* Hover vào card thì icon đổi màu */
+.svc-item:hover .icon {
+    background: #cc0000;
+    color: #fff;
+}
+
+/* Nội dung bên phải */
+.svc-item .info {
+    flex: 1; /* Chiếm hết phần còn lại */
+}
+
+.svc-item h4 {
+    font-size: 17px; 
+    font-weight: 700; 
+    color: #222;
+    margin: 0 0 8px 0; 
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.svc-item p {
+    font-size: 14px; 
+    color: #666; 
+    line-height: 1.6; 
+    margin: 0;
+}
+
+.svc-item:hover h4 { color: #cc0000; }
+
+/* Item Camera trải dài (nếu muốn) hoặc để như cũ */
+/* T bỏ class highlight đỏ lòm đi rồi, giờ nó trắng tinh khôi như mấy cái kia */
+.svc-item:last-child {
+    grid-column: 1 / -1; /* Trải dài hết 2 cột */
+}
+
+
+/* --- CỘT PHẢI: SLIDER ẢNH (FIX LỖI KHÔNG CHẠY) --- */
+.svc-image-col {
+    flex: 1; 
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    height: 580px; 
+    background: #000; /* Thêm nền đen để lúc load ảnh chưa xong ko bị trắng */
+}
+
+.marquee-wrapper {
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.marquee-track {
+    display: flex;
+    gap: 0;
+    
+    /* [QUAN TRỌNG] Dòng này bắt buộc phải có để ảnh xếp hàng dài vô tận */
+    width: max-content; 
+    
+    /* Animation chạy: Tên - Thời gian - Kiểu chạy - Lặp lại */
+    animation: slideImages 25s linear infinite;
+    
+    /* Giúp chạy mượt hơn trên Chrome */
+    will-change: transform; 
+}
+
+/* Container cột phải (Giữ nguyên) */
+.svc-image-col {
+    flex: 1; 
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    height: 580px; 
+    background: #000;
+}
+
+/* Track chứa ảnh (Giữ nguyên) */
+.marquee-track {
+    display: flex;
+    /* gap: 0; -> XÓA DÒNG NÀY ĐI vì mình sẽ dùng margin ở ảnh */
+    width: max-content; 
+    animation: slideImages 30s linear infinite; /* Tăng thời gian lên 30s cho chạy chậm lại xíu vì ảnh giờ to hơn */
+    will-change: transform; 
+}
+
+/* --- [QUAN TRỌNG] ĐỊNH DẠNG LẠI ẢNH CHO ĐỀU --- */
+.marquee-track img {
+    /* 1. Khóa cứng chiều cao bằng khung chứa */
+    height: 580px; 
+    
+    /* 2. Khóa cứng chiều rộng (Tùy chỉnh số này nếu muốn ảnh to/nhỏ hơn) */
+    width: 400px;   
+    
+    /* 3. Bắt buộc có dòng này để ảnh tự crop cho vừa khung, ko bị méo */
+    object-fit: cover; 
+    
+    /* 4. Tạo khoảng cách giữa các ảnh */
+    margin-right: 20px; 
+
+    /* Các hiệu ứng cũ */
+    filter: brightness(0.9);
+    transition: 0.5s;
+    display: block;
+    border-radius: 12px; /* Bo góc nhẹ cho từng ảnh luôn nhìn cho mềm */
+}
+
+/* Hover sáng lên */
+.svc-image-col:hover .marquee-track img {
+    filter: brightness(1.05);
+}
+
+
+/* --- RESPONSIVE TRÊN MOBILE/TABLET --- */
+@media (max-width: 1024px) {
+    .svc-image-col { 
+        height: 350px; /* Chiều cao khung trên mobile */
+        margin-top: 30px; 
+    }
+    .marquee-track img { 
+        height: 350px; /* Ảnh trên mobile cao 350px */
+        width: 280px;  /* Ảnh trên mobile rộng 280px (cho nhỏ lại xíu) */
+    }
+}
+
+.svc-image-col:hover .marquee-track img {
+    filter: brightness(1.05); /* Sáng lên khi hover */
+}
+
+/* Định nghĩa chuyển động */
+@keyframes slideImages {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Chạy hết 1 nửa rồi reset */
+}
+
+/* Mobile chỉnh lại chiều cao */
+@media (max-width: 1024px) {
+    .svc-image-col { height: 350px; margin-top: 30px; }
+    .marquee-track img { height: 350px; }
+}
+
 /* ==========================
    RESPONSIVE (Mobile & Tablet)
 ========================== */
