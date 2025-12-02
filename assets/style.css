@@ -280,7 +280,7 @@ body {
 .hero-arrow.left { left: 12px; }
 .hero-arrow.right { right: 12px; }
 
-@media (max-width: 900px) {
+@media (max-width: 900px) { 
   .hero-slider { height: 440px; }
 }
 
