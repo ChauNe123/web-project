@@ -345,13 +345,15 @@ body {
 .services-preview-section {
     padding: 80px 0;
     background: #f9f9f9;
+    
 }
 
 .center-header { 
     text-align: center; margin-bottom: 50px; 
 }
 .center-header h2 {
-    color: #000; font-size: 2.8rem; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px;
+    color: #000; font-size: 2.8rem; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px; 
+    font-family: 'Playfair Display', serif;
 }
 .center-header .subtitle { color: #555; font-size: 18px; font-weight: 300; }
 .center-header .title-line {
@@ -516,6 +518,7 @@ body {
 }
 .clients .section-header h2 {
     font-size: 2.5rem; color: #000;
+    
 }
 
 .customer-slider {
@@ -644,6 +647,7 @@ body {
     font-size: 2.5rem; font-weight: 800;
     text-transform: uppercase; margin-bottom: 20px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    font-family: 'Playfair Display', serif
 }
 .btn-contact {
     display: inline-block; padding: 15px 40px;
@@ -956,5 +960,6 @@ body {
     /* Canh giữa tiêu đề cho đẹp */
     .center-header h2 {
         font-size: 2rem; /* Giảm size chữ tiêu đề chút */
+        
     }
 }
