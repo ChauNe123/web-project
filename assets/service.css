@@ -2,20 +2,30 @@
    ASSETS/SERVICE.CSS - 3D SERVICE STYLE
 ========================================= */
 
-/* Body Background - Nền xám nhạt làm nổi khối 3D */
-body {
-    background-color: #f7f7f7;
-    overflow-x: hidden; /* Quan trọng: Chặn thanh cuộn ngang do hiệu ứng 3D */
+/* Body Background & Kích hoạt cuộn mượt */
+html {
+    scroll-behavior: smooth; /* Bấm nút sẽ trượt xuống từ từ */
 }
 
-/* --- 1. HERO 3D SECTION --- */
+body {
+    background-color: #f7f7f7;
+    overflow-x: hidden;
+    margin: 0; padding: 0; /* Xóa mọi khoảng trắng thừa */
+}
+
+/* --- 1. HERO 3D SECTION (FIX FULL MÀN HÌNH) --- */
 .svc-hero-3d {
     position: relative;
-    height: 70vh; /* Cao 70% màn hình */
-    min-height: 500px;
-    /* Lưu ý: Bạn cần đảm bảo đường dẫn ảnh đúng */
-    background: url('../thumb/service.jpg') no-repeat center center/cover;
-    background-attachment: fixed; /* Hiệu ứng nền đứng yên */
+    height: 85vh; /* Tăng chiều cao lên chút cho thoáng */
+    width: 100%;  /* Bắt buộc rộng full màn hình */
+    
+    /* Ảnh nền: Thay đổi link ảnh này bằng ảnh thật của m */
+    background: url('../thumb/service.jpg') no-repeat center center;
+    
+    /* Quan trọng: cover để ảnh trải đều, fixed để tạo hiệu ứng 3D khi cuộn */
+    background-size: cover; 
+    background-attachment: fixed;
+    
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,8 +72,26 @@ body {
     line-height: 1.6;
 }
 
+/* --- NÚT MŨI TÊN (FIX THÀNH NÚT BẤM ĐƯỢC) --- */
 .scroll-down-icon {
-    margin-top: 50px; font-size: 30px; animation: bounce 2s infinite;
+    margin-top: 60px; 
+    font-size: 35px; 
+    animation: bounce 2s infinite;
+    cursor: pointer; /* Hiện bàn tay khi chỉ vào */
+    z-index: 10;
+    position: relative;
+}
+
+.scroll-down-icon a {
+    color: #fff;
+    text-decoration: none;
+    display: block; /* Tăng diện tích bấm */
+    width: 100%;
+    height: 100%;
+}
+
+.scroll-down-icon a:hover {
+    color: #cc0000; /* Rê chuột vào đổi màu đỏ */
 }
 
 /* --- 2. 3D SERVICE BLOCKS --- */

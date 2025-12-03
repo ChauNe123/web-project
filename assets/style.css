@@ -356,16 +356,19 @@ body {
     align-items: flex-start;
 }
 
-/* --- CỘT TRÁI: LIST DỊCH VỤ (Chiếm 60%) --- */
+/* --- CỘT TRÁI: LIST DỊCH VỤ (Đã sửa thành chia đều) --- */
 .svc-list-col {
-    flex: 1.5; 
+    /* CŨ: flex: 1.5; (Chiếm nhiều hơn) */
+    /* MỚI: Sửa thành 1 để bằng cột bên phải */
+    flex: 1; 
 }
 
 /* Grid 2 cột: Chia đều 8 ô thành 4 hàng x 2 cột */
 .svc-grid {
     display: grid;
     grid-template-columns: 1fr 1fr; /* 2 cột bằng nhau */
-    gap: 20px;
+    column-gap: 25px;
+    row-gap: 62px;
 }
 
 /* Từng ô dịch vụ */
@@ -410,8 +413,9 @@ body {
 .svc-item:hover h4 { color: #cc0000; }
 
 
-/* --- CỘT PHẢI: SLIDER ẢNH (Chiếm 40%) --- */
+/* --- CỘT PHẢI: SLIDER ẢNH (Đã sửa thành chia đều) --- */
 .svc-image-col {
+    /* Vẫn giữ là 1 để bằng cột bên trái */
     flex: 1; 
     border-radius: 15px;
     overflow: hidden;
@@ -916,6 +920,8 @@ body {
     /* Trên điện thoại thì để 1 cột thôi cho chữ to rõ */
     .svc-grid {
         grid-template-columns: 1fr; 
+        row-gap: 20px;
+        
     }
 
     /* 3. Cột hình ảnh (Slider) */
