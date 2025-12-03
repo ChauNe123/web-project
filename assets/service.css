@@ -65,7 +65,7 @@ body {
     color: #cc0000;
     margin-bottom: 20px;
     text-shadow: 0 0 20px rgba(204,0,0,0.6); /* Phát sáng */
-}
+}   
 
 .hero-content-3d p {
     font-size: 1.4rem; color: #ddd; max-width: 700px; margin: 0 auto;

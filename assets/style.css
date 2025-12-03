@@ -17,6 +17,14 @@
     --slider-speed: 15s;
 }
 
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden; /* DÒNG QUAN TRỌNG: Cấm tiệt cuộn ngang */
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: 'Segoe UI', sans-serif;
     margin: 0;
@@ -25,10 +33,11 @@ body {
     background: #fff;
     color: #000;
     box-sizing: border-box; /* Quan trọng: Padding không làm vỡ khung */
+    position: relative; /* Giúp định vị chuẩn hơn */
 }
 
 *, *::before, *::after {
-    box-sizing: inherit;
+    box-sizing: border-box;
 }
 
 .container {
