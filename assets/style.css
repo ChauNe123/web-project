@@ -641,7 +641,9 @@ body {
     background: rgba(0, 0, 0, 0.6); z-index: 1;
 }
 .communicate .content-box {
-    position: relative; z-index: 2; max-width: 800px;
+    position: relative; z-index: 2; 
+    max-width: 100%; /* Mở rộng full chiều ngang */
+    padding: 0 15px; /* Thêm chút đệm để chữ không dính sát lề màn hình */
 }
 .communicate h3 {
     font-size: 2.5rem; font-weight: 800;
