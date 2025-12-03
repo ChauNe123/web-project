@@ -1,10 +1,11 @@
-F5/* =========================================
+/* =========================================
    ASSETS/SERVICE.CSS - 3D SERVICE STYLE
 ========================================= */
 
 /* Body Background - Nền xám nhạt làm nổi khối 3D */
 body {
     background-color: #f7f7f7;
+    overflow-x: hidden; /* Quan trọng: Chặn thanh cuộn ngang do hiệu ứng 3D */
 }
 
 /* --- 1. HERO 3D SECTION --- */
@@ -12,7 +13,8 @@ body {
     position: relative;
     height: 70vh; /* Cao 70% màn hình */
     min-height: 500px;
-    background-image: url(../thumb/service.jpg);
+    /* Lưu ý: Bạn cần đảm bảo đường dẫn ảnh đúng */
+    background: url('../thumb/service.jpg') no-repeat center center/cover;
     background-attachment: fixed; /* Hiệu ứng nền đứng yên */
     display: flex;
     align-items: center;
@@ -32,6 +34,7 @@ body {
 .hero-content-3d {
     position: relative; z-index: 2;
     padding: 20px;
+    width: 100%; /* Đảm bảo content không bị co lại quá mức */
 }
 
 /* Hiệu ứng chữ Glitch (Giật giật kiểu công nghệ) */
@@ -43,6 +46,7 @@ body {
     letter-spacing: 2px;
     text-shadow: 3px 3px 0 #cc0000; /* Bóng đỏ */
     animation: glitch 3s infinite;
+    line-height: 1.2;
 }
 
 .sub-glitch {
@@ -55,6 +59,7 @@ body {
 
 .hero-content-3d p {
     font-size: 1.4rem; color: #ddd; max-width: 700px; margin: 0 auto;
+    line-height: 1.6;
 }
 
 .scroll-down-icon {
@@ -65,7 +70,7 @@ body {
 .service-container-3d {
     padding-top: 80px;
     padding-bottom: 80px;
-    overflow-x: hidden; /* Chặn thanh cuộn ngang */
+    overflow-x: hidden; /* Chặn thanh cuộn ngang tuyệt đối cho container này */
 }
 
 .svc-block {
@@ -85,13 +90,14 @@ body {
     flex-direction: row-reverse;
 }
 
-/* --- CỘT ẢNH 3D (ĐÃ FIX ĐỒNG BỘ HIỆU ỨNG TRÁI/PHẢI) --- */
+/* --- CỘT ẢNH 3D --- */
 .svc-img-col {
     flex: 1;
-    perspective: 1500px; /* Tăng độ sâu trường ảnh để hiệu ứng 3D rõ hơn */
+    perspective: 1500px; /* Tăng độ sâu trường ảnh */
     display: flex;
-    justify-content: center; /* Căn giữa ảnh trong cột */
+    justify-content: center;
     align-items: center;
+    width: 100%; /* Đảm bảo full width trên mobile */
 }
 
 .img-3d-box {
@@ -100,33 +106,32 @@ body {
     height: 400px;
     border-radius: 20px;
     
-    /* Mặc định (Ảnh bên trái): Nghiêng sang phải 15 độ */
+    /* Mặc định: Nghiêng phải 15 độ */
     transform: rotateY(15deg); 
     
-    box-shadow: 20px 20px 50px rgba(0,0,0,0.15); /* Bóng đổ tự nhiên */
-    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Hiệu ứng nảy đàn hồi */
+    box-shadow: 20px 20px 50px rgba(0,0,0,0.15);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
     cursor: pointer;
-    background: #fff; /* Nền trắng phòng khi ảnh lỗi */
+    background: #fff;
 }
 
-/* Trường hợp Ảnh bên phải (Reverse): Nghiêng ngược lại sang trái 15 độ */
+/* Trường hợp Ảnh bên phải (Reverse): Nghiêng trái 15 độ */
 .svc-block.reverse .img-3d-box {
     transform: rotateY(-15deg); 
-    box-shadow: -20px 20px 50px rgba(0,0,0,0.15); /* Bóng đổ ngược lại */
+    box-shadow: -20px 20px 50px rgba(0,0,0,0.15);
 }
 
-/* --- HIỆU ỨNG HOVER (QUAN TRỌNG) --- */
-
-/* 1. Hover vào ảnh bên TRÁI */
+/* --- HIỆU ỨNG HOVER --- */
+/* Hover ảnh trái */
 .img-3d-box:hover {
-    transform: rotateY(0deg) scale(1.05) translateY(-10px); /* Quay thẳng mặt, phóng to, bay lên */
-    box-shadow: 0 30px 60px rgba(204,0,0,0.25); /* Bóng đỏ phát sáng */
+    transform: rotateY(0deg) scale(1.05) translateY(-10px);
+    box-shadow: 0 30px 60px rgba(204,0,0,0.25);
     z-index: 10;
 }
 
-/* 2. Hover vào ảnh bên PHẢI (Ghi đè cụ thể để nhận diện) */
+/* Hover ảnh phải */
 .svc-block.reverse .img-3d-box:hover {
-    transform: rotateY(0deg) scale(1.05) translateY(-10px); /* Y chang bên trái */
+    transform: rotateY(0deg) scale(1.05) translateY(-10px);
     box-shadow: 0 30px 60px rgba(204,0,0,0.25);
     z-index: 10;
 }
@@ -136,20 +141,19 @@ body {
     width: 100%; height: 100%;
     object-fit: cover;
     border-radius: 20px;
-    filter: brightness(0.95); /* Hơi tối nhẹ */
+    filter: brightness(0.95);
     transition: 0.5s;
 }
 
-/* Hover vào thì ảnh sáng lên */
 .img-3d-box:hover img {
     filter: brightness(1.1);
 }
 
-/* --- BADGE ICON NỔI (FIX LẠI VỊ TRÍ) --- */
+/* --- BADGE ICON NỔI --- */
 .floating-badge {
     position: absolute;
     bottom: -30px; 
-    right: -30px; /* Mặc định nằm lòi ra bên phải */
+    right: -30px;
     width: 90px; height: 90px;
     background: #cc0000;
     color: #fff;
@@ -157,52 +161,30 @@ body {
     display: flex; align-items: center; justify-content: center;
     font-size: 35px;
     box-shadow: 10px 10px 30px rgba(0,0,0,0.2);
-    border: 4px solid #fff; /* Viền trắng cho nổi */
+    border: 4px solid #fff;
     
-    /* Animation nổi lềnh bềnh */
     transform: translateZ(50px); 
     animation: float 4s ease-in-out infinite;
     transition: 0.3s;
 }
 
-/* Badge của ảnh bên phải thì nằm lòi ra bên trái */
 .svc-block.reverse .floating-badge {
-    right: auto; /* Hủy bên phải */
-    left: -30px; /* Gán bên trái */
+    right: auto; left: -30px;
 }
 
-/* Hover vào ảnh thì Badge cũng đổi màu */
 .img-3d-box:hover .floating-badge {
     background: #fff;
     color: #cc0000;
     border-color: #cc0000;
-    transform: scale(1.1) rotate(10deg); /* Xoay nhẹ cho vui mắt */
+    transform: scale(1.1) rotate(10deg);
 }
 
-/* Màu Badge riêng biệt */
+/* Màu Badge */
 .badge-blue { background: #007bff; }
 .badge-green { background: #28a745; }
 .badge-orange { background: #fd7e14; }
 .badge-purple { background: #6f42c1; }
 .badge-red { background: #cc0000; }
-
-/* Mobile Reset */
-@media (max-width: 1024px) {
-    .img-3d-box, .svc-block.reverse .img-3d-box {
-        transform: none !important; /* Mobile thì bỏ nghiêng */
-        height: 280px;
-    }
-    .img-3d-box:hover, .svc-block.reverse .img-3d-box:hover {
-        transform: scale(1.02) !important;
-    }
-    .floating-badge {
-        width: 60px; height: 60px; font-size: 25px;
-        bottom: -20px; right: 10px;
-    }
-    .svc-block.reverse .floating-badge {
-        left: 10px;
-    }
-}
 
 
 /* --- CỘT TEXT CHI TIẾT --- */
@@ -213,7 +195,7 @@ body {
 .svc-num {
     font-size: 5rem;
     font-weight: 900;
-    color: #f0f0f0; /* Màu xám rất nhạt làm nền */
+    color: #f0f0f0;
     line-height: 1;
     margin-bottom: -30px;
     position: relative; z-index: -1;
@@ -225,7 +207,7 @@ body {
     color: #000;
     text-transform: uppercase;
     margin-bottom: 20px;
-    text-shadow: 2px 2px 0 #fff; /* Viền trắng tách nền */
+    text-shadow: 2px 2px 0 #fff;
 }
 
 .svc-desc {
@@ -262,7 +244,7 @@ body {
     box-shadow: 0 15px 30px rgba(204,0,0,0.5);
 }
 
-/* --- ANIMATION --- */
+/* --- ANIMATION KEYFRAMES --- */
 @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-15px); }
@@ -272,14 +254,76 @@ body {
     40% {transform: translateY(-20px);}
     60% {transform: translateY(-10px);}
 }
+@keyframes glitch {
+    0% { transform: skew(0deg); }
+    20% { transform: skew(-2deg); }
+    40% { transform: skew(2deg); }
+    60% { transform: skew(-1deg); }
+    80% { transform: skew(1deg); }
+    100% { transform: skew(0deg); }
+}
 
-/* RESPONSIVE */
+/* =========================================
+   RESPONSIVE (MOBILE & TABLET)
+========================================= */
 @media (max-width: 1024px) {
-    .svc-row, .svc-block.reverse .svc-row { flex-direction: column; text-align: center; }
-    .img-3d-box { transform: none !important; height: 300px; }
-    .floating-badge { width: 70px; height: 70px; font-size: 30px; bottom: -20px; right: 20px; }
-    .svc-block.reverse .floating-badge { left: 20px; }
-    .svc-features li { justify-content: center; text-align: left; }
-    .glitch-text { font-size: 2.5rem; }
+    /* 1. Hero Section */
+    .svc-hero-3d {
+        height: auto;
+        padding: 120px 0 80px 0; /* Tăng padding để không bị menu che */
+    }
+    .glitch-text { font-size: 2.2rem; word-wrap: break-word; } /* Giảm size chữ tiêu đề */
     .sub-glitch { font-size: 1.5rem; }
+    
+    /* 2. Service Blocks */
+    .svc-block { padding: 40px 0; }
+    
+    .svc-row, 
+    .svc-block.reverse .svc-row { 
+        flex-direction: column; /* Xếp chồng dọc */
+        text-align: center; /* Căn giữa nội dung */
+        gap: 40px;
+    }
+    
+    /* 3. Ảnh 3D (Tắt hiệu ứng nghiêng trên mobile cho dễ nhìn) */
+    .svc-img-col {
+        perspective: none; 
+    }
+    
+    .img-3d-box, 
+    .svc-block.reverse .img-3d-box {
+        transform: none !important; /* Bắt buộc thẳng hàng */
+        height: 250px; /* Giảm chiều cao ảnh */
+        width: 100%;
+        max-width: 400px; /* Giới hạn chiều rộng ảnh */
+        margin: 0 auto; /* Căn giữa */
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    .img-3d-box:hover, 
+    .svc-block.reverse .img-3d-box:hover {
+        transform: scale(1.02) !important; /* Chỉ phóng to nhẹ khi chạm */
+    }
+    
+    /* 4. Badge Icon */
+    .floating-badge { 
+        width: 60px; height: 60px; font-size: 25px; 
+        bottom: -20px; right: 10px; 
+        box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+    }
+    .svc-block.reverse .floating-badge { 
+        left: 10px; 
+    }
+    
+    /* 5. Nội dung chữ */
+    .svc-num { font-size: 4rem; }
+    .svc-text-col h2 { font-size: 1.8rem; }
+    
+    /* Canh trái lại list tính năng cho dễ đọc, dù tiêu đề căn giữa */
+    .svc-features {
+        display: inline-block; /* Để nó co lại theo nội dung */
+        text-align: left;
+        margin-top: 20px;
+    }
+    .svc-features li { justify-content: flex-start; }
 }
