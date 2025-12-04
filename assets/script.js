@@ -180,23 +180,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ====================================================
-    // 6. CLIENTS SLIDER (CHẠY LIÊN TỤC - FIX)
+    // 6. CLIENTS SLIDER (LOGIC NHÂN BẢN ĐƠN GIẢN)
     // ====================================================
     const customerTrack = document.querySelector('.owl-carousel-clients-carousel');
 
     if (customerTrack) {
-        // Lấy danh sách logo gốc
         const slides = Array.from(customerTrack.children);
         
-        // Nhân đôi danh sách logo lên
-        // Logic: CSS sẽ chạy từ 0% đến -50%.
-        // Khi chạy đến -50% (hết đám gốc), nó nhảy về 0. 
-        // Nhờ việc nhân đôi nên lúc nhảy về 0 mắt người không nhìn thấy kịp -> Thấy nó chạy liên tục.
+        // Nhân bản danh sách logo để tạo vòng lặp
         slides.forEach(slide => {
             const clone = slide.cloneNode(true);
-            clone.setAttribute('aria-hidden', true); // Tốt cho SEO
+            clone.setAttribute('aria-hidden', true);
             customerTrack.appendChild(clone);
         });
+        
+        // Mẹo nhỏ: Nếu màn hình quá to mà ít logo, nhân bản thêm lần nữa cho chắc
+        // (Với 21 logo thì không cần, nhưng cứ để code dự phòng)
+        if (slides.length < 10) {
+             slides.forEach(slide => {
+                const clone = slide.cloneNode(true);
+                clone.setAttribute('aria-hidden', true);
+                customerTrack.appendChild(clone);
+            });
+        }
     }
 
 
