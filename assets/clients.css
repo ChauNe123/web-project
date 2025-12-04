@@ -8,14 +8,15 @@ body.client-page {
     background-color: #ffffff;
     color: #333333;
     font-family: 'Montserrat', sans-serif;
-    /* Họa tiết chấm bi mờ cực nhẹ để không bị đơn điệu */
+    /* Họa tiết chấm bi mờ cực nhẹ */
     background-image: radial-gradient(#e5e5e5 1px, transparent 1px);
     background-size: 20px 20px;
 }
 
 /* 2. HEADER GIỚI THIỆU */
 .clients-hero {
-    padding: 160px 20px 60px; /* Chừa khoảng trống cho menu fixed */
+    /* Padding-top 160px để tránh bị Header (fixed) che mất nội dung */
+    padding: 160px 20px 60px; 
     text-align: center;
     background: linear-gradient(to bottom, #fff, #f9f9f9);
     border-bottom: 1px solid #eee;
@@ -62,7 +63,7 @@ body.client-page {
 
 .clients-grid {
     display: grid;
-    /* Tự động chia cột: PC 4-5 cột, màn hình nhỏ tự co lại */
+    /* Tự động chia cột: PC 4-5 cột */
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
     gap: 30px;
     max-width: 1200px;
@@ -150,15 +151,54 @@ body.client-page {
     box-shadow: 0 6px 20px rgba(204, 0, 0, 0.4);
 }
 
-/* 6. MOBILE RESPONSIVE */
+/* =========================================================
+   6. MOBILE RESPONSIVE FIX (ĐÃ TỐI ƯU CHO CẤU TRÚC MỚI)
+========================================================= */
 @media (max-width: 768px) {
-    .clients-hero { padding-top: 130px; }
-    .clients-hero h1 { font-size: 2rem; }
-    
-    .clients-grid { 
-        grid-template-columns: repeat(2, 1fr); /* Mobile chia 2 cột */
-        gap: 15px; 
+    /* Chỉnh lại padding top vì Header trên Mobile nhỏ hơn Header PC */
+    .clients-hero { 
+        padding-top: 130px; 
+        padding-bottom: 40px;
     }
     
-    .tech-card { height: 120px; padding: 15px; }
+    .clients-hero h1 { 
+        font-size: 1.8rem; /* Giảm size chữ tiêu đề */
+    }
+    
+    .clients-hero p {
+        font-size: 0.95rem;
+        padding: 0 15px;
+    }
+    
+    .clients-grid { 
+        /* Mobile chia 2 cột */
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 12px; /* Gap nhỏ lại để logo to hơn */
+    }
+    
+    .tech-card { 
+        height: 110px; /* Giảm chiều cao card */
+        padding: 15px; 
+        border-radius: 12px;
+    }
+    
+    .tech-card img {
+        max-height: 50px; /* Giới hạn chiều cao logo để không bị tràn */
+    }
+
+    .client-cta {
+        margin-top: 50px;
+    }
+    
+    .client-cta h3 {
+        font-size: 1.2rem;
+        padding: 0 10px;
+    }
+}
+
+/* Fix cho màn hình điện thoại siêu nhỏ (iPhone 5/SE cũ) */
+@media (max-width: 360px) {
+    .clients-grid {
+        grid-template-columns: 1fr; /* Về 1 cột cho dễ nhìn */
+    }
 }

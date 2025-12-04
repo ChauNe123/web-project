@@ -6,7 +6,7 @@
     <title>Đối Tác & Khách Hàng - KB Tech</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     
     <link rel="stylesheet" href="assets/style.css">
@@ -32,20 +32,21 @@
 
     <header class="main-header">
         <div class="navbar container">   
-            <button class="menu-toggle" aria-label="Mở menu" style="display:none;">
+            <button class="menu-toggle" aria-label="Mở menu">
                 <span></span><span></span><span></span>
             </button>
+            
             <a href="index.html" class="logo"><img src="img/logo.png" alt="KB Logo"></a>
+            
             <nav class="main-nav">
                 <ul>
                     <li><a href="index.html">TRANG CHỦ</a></li>
                     <li><a href="about.html">GIỚI THIỆU</a></li>
                     <li><a href="service.html">DỊCH VỤ</a></li>
-                    <li><a href="clients.html">KHÁCH HÀNG</a></li>
+                    <li><a href="clients.html" class="active">KHÁCH HÀNG</a></li>
                 </ul>
             </nav>
-            <div></div>
-        </div>
+            <div></div> </div>
     </header>
 
     <section class="clients-hero">
@@ -58,7 +59,6 @@
     <section class="clients-grid-section">
         <div class="container">
             <div class="clients-grid">
-                
                 <div class="tech-card"><img src="logoclient/cl1.jpg" alt="Partner"></div>
                 <div class="tech-card"><img src="logoclient/cl2.jpg" alt="Partner"></div>
                 <div class="tech-card"><img src="logoclient/cl3.jpg" alt="Partner"></div>
@@ -80,7 +80,6 @@
                 <div class="tech-card"><img src="logoclient/cl23.jpg" alt="Partner"></div>
                 <div class="tech-card"><img src="logoclient/cl24.jpg" alt="Partner"></div>
                 <div class="tech-card"><img src="logoclient/cl25.jpg" alt="Partner"></div>
-
             </div>
 
             <div class="client-cta">
@@ -167,6 +166,36 @@
             </div>
         </div>
     </footer>
+
+    <div class="video-modal" id="videoModal">
+        <div class="video-box">
+            <div class="video-header">
+                <div class="agent-info">
+                    <div class="agent-avatar"><i class="fas fa-headset"></i></div>
+                    <div>
+                        <h4>Hỗ trợ viên KB</h4>
+                        <span class="status-dot"></span> Đang trực tuyến
+                    </div>
+                </div>
+                <button class="close-video" id="btnCloseVideo"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="video-screen">
+                <video id="agentVideo" autoplay loop muted playsinline>
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                </video>
+                <div class="video-overlay"><p><i class="fas fa-volume-up"></i> Nhân viên đang nói...</p></div>
+            </div>
+            <div class="chat-area">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message agent-msg">Chào bạn! KB nghe ạ. Bạn cần hỗ trợ gì nhắn vào đây nhé?</div>
+                </div>
+                <div class="chat-input-box">
+                    <input type="text" id="chatInput" placeholder="Nhập nội dung...">
+                    <button id="btnSendChat"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="assets/script.js"></script>
 
